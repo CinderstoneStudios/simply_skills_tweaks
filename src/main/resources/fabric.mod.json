@@ -5,11 +5,12 @@
 	"name": "Simply Skills Tweaks",
 	"description": "Tweaks abilities and skills for Simply Skills.",
 	"authors": [
-		"Stalemated"
+		"Stalemated",
+		"Cinderstone Studios"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "",
+		"sources": "https://github.com/CinderstoneStudios/simply_skills_tweaks"
 	},
 	"license": "ARR",
 	"icon": "assets/simply_skills_tweaks/icon.png",

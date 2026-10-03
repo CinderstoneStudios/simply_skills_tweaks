@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "simply_skills_tweaks",
+	"version": "${version}",
+	"name": "Simply Skills Tweaks",
+	"description": "Tweaks abilities and skills for Simply Skills.",
+	"authors": [
+		"Stalemated"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "ARR",
+	"icon": "assets/simply_skills_tweaks/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.cinderstonestudios.simplyskillstweaks.SimplySkillsTweaks"
+		],
+		"modmenu": [
+			"com.cinderstonestudios.simplyskillstweaks.client.ModMenuCompat"
+		]
+	},
+	"mixins": [
+		"simply_skills_tweaks.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.7",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"s_lib": ">=3.0.1+1.20.1",
+		"simplyskills": ">=1.7.2+1.20.1"
+	}
+}

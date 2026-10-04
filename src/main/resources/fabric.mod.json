@@ -13,7 +13,7 @@
 		"sources": "https://github.com/CinderstoneStudios/simply_skills_tweaks"
 	},
 	"license": "ARR",
-	"icon": "assets/simply_skills_tweaks/icon.png",
+	"icon": "assets/simply_skills_tweaks/simply_skills_tweaks_icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

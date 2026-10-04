@@ -6,7 +6,7 @@
   "simply_skills_tweaks.category.righteous_hammers.desc": "Config for the Righteous Hammers ascendancy ability scaling.",
 
   "simply_skills_tweaks.group.general": "General Settings",
-  "simply_skills_tweaks.group.general.desc": "Toggle the custom scaling formula.",
+  "simply_skills_tweaks.group.general.desc": "Toggle the custom scaling formula and debugging.",
 
   "simply_skills_tweaks.group.physical": "Physical Scaling",
   "simply_skills_tweaks.group.physical.desc": "Scaling for §6Physical Damage§f builds.",
@@ -20,8 +20,17 @@
   "simply_skills_tweaks.option.toggleNewHammerFormula": "Enable New Formula",
   "simply_skills_tweaks.option.toggleNewHammerFormula.desc": "Toggles the new formula for Righteous Hammers. If disabled, reverts to vanilla SimplySkills scaling.",
 
+  "simply_skills_tweaks.option.debugLogging": "Enable Debug Logging",
+  "simply_skills_tweaks.option.debugLogging.desc": "Logs detailed damage calculations to the console for each player.",
+
   "simply_skills_tweaks.option.physicalAttackMultiplier": "Physical Attack Multiplier",
-  "simply_skills_tweaks.option.physicalAttackMultiplier.desc": "Attack damage multiplier for the physical branch (Original scaling: 0.80).",
+  "simply_skills_tweaks.option.physicalAttackMultiplier.desc": "Attack damage multiplier up to the soft-cap threshold (Original scaling: 0.80).",
+
+  "simply_skills_tweaks.option.physicalSoftCapThreshold": "Physical Soft-Cap Threshold",
+  "simply_skills_tweaks.option.physicalSoftCapThreshold.desc": "Attack damage threshold where physical soft-cap begins.",
+
+  "simply_skills_tweaks.option.physicalExcessMultiplier": "Physical Excess Multiplier",
+  "simply_skills_tweaks.option.physicalExcessMultiplier.desc": "Diminishing multiplier for attack damage exceeding the soft-cap threshold.",
 
   "simply_skills_tweaks.option.tankAttackMultiplier": "Tank Attack Multiplier",
   "simply_skills_tweaks.option.tankAttackMultiplier.desc": "Attack damage multiplier for tanks.",
@@ -36,7 +45,7 @@
   "simply_skills_tweaks.option.shieldBonusMultiplier.desc": "Damage multiplier when holding a §eShield§f in the off-hand.",
 
   "simply_skills_tweaks.option.holyLightningAttackMultiplier": "Hybrid Attack Multiplier",
-  "simply_skills_tweaks.option.holyLightningAttackMultiplier.desc": "Attack damage multiplier for §6Holy§f/§eLightning§f hybrid builds",
+  "simply_skills_tweaks.option.holyLightningAttackMultiplier.desc": "Attack damage multiplier for §6Holy§f/§eLightning§f hybrid builds.",
 
   "simply_skills_tweaks.option.holyLightningSpellMultiplier": "Spell Power Multiplier",
   "simply_skills_tweaks.option.holyLightningSpellMultiplier.desc": "Multiplier for the highest of §6Healing§f or §eLightning§f Spell Power.",

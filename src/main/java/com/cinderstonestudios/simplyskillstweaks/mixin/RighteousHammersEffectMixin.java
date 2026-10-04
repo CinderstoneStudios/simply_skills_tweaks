@@ -19,7 +19,7 @@ public abstract class RighteousHammersEffectMixin {
         )
     )
     private static boolean redirectRighteousHammersDamage(LivingEntity target, DamageSource source, float amount) {
-        float scaledDamage = RighteousHammersDamageHelper.calculateDamage(target, source, amount);
+        float scaledDamage = RighteousHammersDamageHelper.calculateDamage(source, amount);
         return target.damage(source, scaledDamage);
     }
 }

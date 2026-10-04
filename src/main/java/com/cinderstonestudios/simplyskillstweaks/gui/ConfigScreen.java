@@ -53,6 +53,8 @@ public class ConfigScreen {
                 .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.general.desc")))
                 .option(createBooleanOption("toggleNewHammerFormula", canEdit,
                         cfg, c -> c.toggleNewHammerFormula, true, updater))
+                .option(createBooleanOption("debugLogging", canEdit,
+                        cfg, c -> c.debugLogging, true, updater))
                 .build();
     }
 
@@ -65,7 +67,11 @@ public class ConfigScreen {
                 .name(Text.translatable("simply_skills_tweaks.group.physical"))
                 .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.physical.desc")))
                 .option(createFloatOption("physicalAttackMultiplier", canEdit, 0.0f, 2.0f, 0.05f,
-                        cfg, c -> c.physicalAttackMultiplier, 0.25f, updater))
+                        cfg, c -> c.physicalAttackMultiplier, 0.50f, updater))
+                .option(createFloatOption("physicalSoftCapThreshold", canEdit, 20.0f, 500.0f, 5.0f, "%.1f",
+                        cfg, c -> c.physicalSoftCapThreshold, 120.0f, updater))
+                .option(createFloatOption("physicalExcessMultiplier", canEdit, 0.0f, 1.0f, 0.05f,
+                        cfg, c -> c.physicalExcessMultiplier, 0.20f, updater))
                 .build();
     }
 
@@ -79,12 +85,12 @@ public class ConfigScreen {
                 .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.tank.desc")))
                 .option(createFloatOption("tankAttackMultiplier", canEdit, 0.0f, 1.0f, 0.01f,
                         cfg, c -> c.tankAttackMultiplier, 0.05f, updater))
-                .option(createFloatOption("tankHealthMultiplier", canEdit, 0.0f, 0.25f, 0.005f, "%.3f",
-                        cfg, c -> c.tankHealthMultiplier, 0.035f, updater))
+                .option(createFloatOption("tankHealthMultiplier", canEdit, 0.0f, 0.10f, 0.002f, "%.3f",
+                        cfg, c -> c.tankHealthMultiplier, 0.015f, updater))
                 .option(createFloatOption("tankArmorMultiplier", canEdit, 0.0f, 2.0f, 0.05f,
                         cfg, c -> c.tankArmorMultiplier, 0.30f, updater))
                 .option(createFloatOption("shieldBonusMultiplier", canEdit, 1.0f, 3.0f, 0.05f,
-                        cfg, c -> c.shieldBonusMultiplier, 1.20f, updater))
+                        cfg, c -> c.shieldBonusMultiplier, 1.35f, updater))
                 .build();
     }
 
@@ -97,9 +103,9 @@ public class ConfigScreen {
                 .name(Text.translatable("simply_skills_tweaks.group.holy_lightning"))
                 .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.holy_lightning.desc")))
                 .option(createFloatOption("holyLightningAttackMultiplier", canEdit, 0.0f, 1.0f, 0.01f,
-                        cfg, c -> c.holyLightningAttackMultiplier, 0.10f, updater))
+                        cfg, c -> c.holyLightningAttackMultiplier, 0.0f, updater))
                 .option(createFloatOption("holyLightningSpellMultiplier", canEdit, 0.0f, 3.0f, 0.05f,
-                        cfg, c -> c.holyLightningSpellMultiplier, 0.9f, updater))
+                        cfg, c -> c.holyLightningSpellMultiplier, 0.60f, updater))
                 .option(createFloatOption("holyLightningArmorMultiplier", canEdit, 0.0f, 2.0f, 0.05f,
                         cfg, c -> c.holyLightningArmorMultiplier, 0.20f, updater))
                 .build();

@@ -1,6 +1,6 @@
 package com.cinderstonestudios.simplyskillstweaks.mixin;
 
-import com.cinderstonestudios.simplyskillstweaks.util.RighteousHammersDamageHelper;
+import com.cinderstonestudios.simplyskillstweaks.skill.RighteousHammersDamageBalancer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.sweenus.simplyskills.effects.RighteousHammersEffect;
@@ -19,7 +19,7 @@ public abstract class RighteousHammersEffectMixin {
         )
     )
     private static boolean redirectRighteousHammersDamage(LivingEntity target, DamageSource source, float amount) {
-        float scaledDamage = RighteousHammersDamageHelper.calculateDamage(source, amount);
+        float scaledDamage = RighteousHammersDamageBalancer.calculateDamage(source, amount);
         return target.damage(source, scaledDamage);
     }
 }

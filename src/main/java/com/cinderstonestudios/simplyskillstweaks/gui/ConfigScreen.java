@@ -119,7 +119,7 @@ public class ConfigScreen {
             boolean defaultValue,
             BiConsumer<String, Object> updater
     ) {
-        String langKey = "simply_skills_tweaks.option." + configKey.replace('.', '_');
+        String langKey = getLangKey(configKey);
         return Option.<Boolean>createBuilder()
                 .name(Text.translatable(langKey))
                 .description(OptionDescription.of(
@@ -162,7 +162,7 @@ public class ConfigScreen {
             float defaultValue,
             BiConsumer<String, Object> updater
     ) {
-        String langKey = "simply_skills_tweaks.option." + configKey.replace('.', '_');
+        String langKey = getLangKey(configKey);
         return Option.<Float>createBuilder()
                 .name(Text.translatable(langKey))
                 .description(OptionDescription.of(
@@ -181,5 +181,9 @@ public class ConfigScreen {
                 )
                 .available(canEdit)
                 .build();
+    }
+
+    private static String getLangKey(String configKey) {
+        return "simply_skills_tweaks.option." + configKey.replace('.', '_');
     }
 }

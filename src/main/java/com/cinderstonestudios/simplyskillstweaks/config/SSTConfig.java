@@ -5,7 +5,7 @@ import com.stalemated.lib.config.annotation.RangeFloat;
 
 public class SSTConfig {
     @Comment("""
-            Toggles the new multi-archetype Righteous Hammers formula.
+            Toggles the new Righteous Hammers formula.
 
             Formula breakdown:
               Final Damage = max(Physical Branch, Tank Branch, Holy/Lightning Branch)
@@ -31,7 +31,7 @@ public class SSTConfig {
             """)
     public boolean toggleNewHammerFormula = true;
 
-    @Comment("Enables throttled in-game console logging for formula balancing")
+    @Comment("Enables debug logging")
     public boolean debugLogging = true;
 
     // Physical Branch

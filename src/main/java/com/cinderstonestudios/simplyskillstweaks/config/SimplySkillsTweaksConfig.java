@@ -1,9 +1,16 @@
 package com.cinderstonestudios.simplyskillstweaks.config;
 
 import com.stalemated.lib.config.annotation.Comment;
+import com.stalemated.lib.config.annotation.EnabledIf;
+import com.stalemated.lib.config.annotation.Format;
 import com.stalemated.lib.config.annotation.RangeFloat;
+import com.stalemated.lib.config.annotation.Sync;
+import com.stalemated.lib.config.annotation.Title;
+import com.stalemated.lib.config.network.SyncMode;
 
-public class SSTConfig {
+@Sync(SyncMode.OVERRIDE_CLIENT)
+public class SimplySkillsTweaksConfig {
+    @Title("general")
     @Comment("""
             Toggles the new Righteous Hammers formula.
 
@@ -34,46 +41,57 @@ public class SSTConfig {
     @Comment("Enables debug logging")
     public boolean debugLogging = true;
 
-    // Physical Branch
+    @Title("physical")
     @Comment("Physical attack damage multiplier up to the soft-cap threshold (Default: 0.50, Vanilla was 0.80)")
-    @RangeFloat(min = 0.0f, max = 2.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 2.0f, step = 0.05f)
     public float physicalAttackMultiplier = 0.50f;
 
     @Comment("Attack damage threshold where physical soft-cap begins (Default: 120.0)")
-    @RangeFloat(min = 20.0f, max = 500.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 20.0f, max = 500.0f, step = 5.0f)
+    @Format("%.1f")
     public float physicalSoftCapThreshold = 120.0f;
 
     @Comment("Diminishing multiplier for attack damage exceeding the soft-cap threshold (Default: 0.20)")
-    @RangeFloat(min = 0.0f, max = 1.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 1.0f, step = 0.05f)
     public float physicalExcessMultiplier = 0.20f;
 
-    // Tank Branch
+    @Title("tank")
     @Comment("Residual attack damage multiplier for tanks (Default: 0.05)")
-    @RangeFloat(min = 0.0f, max = 1.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 1.0f, step = 0.01f)
     public float tankAttackMultiplier = 0.05f;
 
     @Comment("Max Health multiplier for tanks (Default: 0.015)")
-    @RangeFloat(min = 0.0f, max = 0.10f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 0.10f, step = 0.002f)
     public float tankHealthMultiplier = 0.015f;
 
     @Comment("Armor multiplier for tanks (Default: 0.30)")
-    @RangeFloat(min = 0.0f, max = 2.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 2.0f, step = 0.05f)
     public float tankArmorMultiplier = 0.30f;
 
     @Comment("Bonus damage multiplier when holding a Shield in off-hand (Default: 1.35 = +35%)")
-    @RangeFloat(min = 1.0f, max = 3.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 1.0f, max = 3.0f, step = 0.05f)
     public float shieldBonusMultiplier = 1.35f;
 
-    // Holy / Lightning Branch
+    @Title("holy_lightning")
     @Comment("Attack damage multiplier for Holy/Lightning hybrid builds (Default: 0.0)")
-    @RangeFloat(min = 0.0f, max = 1.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 1.0f, step = 0.01f)
     public float holyLightningAttackMultiplier = 0.0f;
 
     @Comment("Spell power multiplier (max of Healing and Lightning power) (Default: 0.60)")
-    @RangeFloat(min = 0.0f, max = 3.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 3.0f, step = 0.05f)
     public float holyLightningSpellMultiplier = 0.60f;
 
     @Comment("Armor multiplier for Holy/Lightning builds (Default: 0.20)")
-    @RangeFloat(min = 0.0f, max = 2.0f)
+    @EnabledIf("toggleNewHammerFormula")
+    @RangeFloat(min = 0.0f, max = 2.0f, step = 0.05f)
     public float holyLightningArmorMultiplier = 0.20f;
 }

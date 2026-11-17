@@ -1,0 +1,42 @@
+mod.id = "simply_skills_tweaks"
+mod.name = "Simply Skills Tweaks"
+mod.group = "com.cinderstonestudios.simplyskillstweaks"
+mod.artifact = "simply_skills_tweaks"
+mod.version = "1.0.0"
+mod.description = "Tweaks abilities and skills for Simply Skills."
+mod.author = "Stalemated"
+mod.sources = "https://github.com/CinderstoneStudios/simply_skills_tweaks"
+mod.environment = "both"
+
+deps.fabric_loader = "0.18.4"
+loomx.loom_version = "1.18-SNAPSHOT"
+
+deps.jupiter = "6.1.3"
+
+deps.slib = "4.1.0.4"
+
+publish.modrinth_id = ""
+publish.curseforge_id = ""
+publish.type = "stable"
+publish.modrinth_environment = "client_and_server"
+publish.requires = ["s-lib"]
+publish.optional = ["yacl"]
+
+
+["1.20.1"]
+mod.mc_releases = ["1.20.1"]
+deps.yacl = "3.6.6+1.20.1"
+
+[fabric."1.20.1"]
+mod.mc_compat = "~1.20.1"
+deps.fabric_api = "0.92.9+1.20.1"
+deps.modmenu = "7.2.2"
+deps.simply_skills = "1.7.2+1.20.1"
+deps.spell_power = "0.11.0+1.20.1"
+deps.spell_engine = "0.15.6+1.20.1"
+deps.cloth_config = "11.1.106"
+deps.puffish_skills = "5504276"
+deps.puffish_attributes = "5535411"
+deps.player_anim = "1.0.2+1.19.4"
+deps.tiny_config = "2.3.2"
+deps.basic_math = "0.6.1"

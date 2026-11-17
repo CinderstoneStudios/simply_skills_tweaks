@@ -1,7 +1,7 @@
 package com.cinderstonestudios.simplyskillstweaks.skill;
 
-import com.cinderstonestudios.simplyskillstweaks.config.ConfigManager;
-import com.cinderstonestudios.simplyskillstweaks.config.SSTConfig;
+import com.cinderstonestudios.simplyskillstweaks.config.SimplySkillsTweaksConfig;
+import com.cinderstonestudios.simplyskillstweaks.config.SimplySkillsTweaksConfigRegistry;
 import com.cinderstonestudios.simplyskillstweaks.util.PlayerStatsUtils;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -39,7 +39,7 @@ public final class RighteousHammersDamageBalancer {
      * @return The scaled damage amount.
      */
     public static float calculateDamage(DamageSource source, float originalAmount) {
-        SSTConfig config = ConfigManager.getConfig();
+        SimplySkillsTweaksConfig config = SimplySkillsTweaksConfigRegistry.CONFIG.get();
         if (!config.toggleNewHammerFormula) return originalAmount;
         if (!(source.getEntity() instanceof ServerPlayer player)) {
             return originalAmount;
@@ -68,7 +68,7 @@ public final class RighteousHammersDamageBalancer {
         return finalDamage;
     }
 
-    private static float getPhysicalBranchDamage(SSTConfig config, float attackDamage) {
+    private static float getPhysicalBranchDamage(SimplySkillsTweaksConfig config, float attackDamage) {
         if (attackDamage <= config.physicalSoftCapThreshold) {
             return attackDamage * config.physicalAttackMultiplier;
         } else {
@@ -77,7 +77,7 @@ public final class RighteousHammersDamageBalancer {
         }
     }
 
-    private static float getTankBranchDamage(SSTConfig config, float attackDamage, float maxHealth, float armor, boolean holdingShield) {
+    private static float getTankBranchDamage(SimplySkillsTweaksConfig config, float attackDamage, float maxHealth, float armor, boolean holdingShield) {
         float tankBaseDamage = (attackDamage * config.tankAttackMultiplier)
                 + (maxHealth * config.tankHealthMultiplier)
                 + (armor * config.tankArmorMultiplier);
@@ -86,15 +86,17 @@ public final class RighteousHammersDamageBalancer {
         return tankBaseDamage * tankMultiplier;
     }
 
-    private static float getSpellBranchDamage(SSTConfig config, float attackDamage, float elementalPower, float armor) {
+    private static float getSpellBranchDamage(SimplySkillsTweaksConfig config, float attackDamage, float elementalPower, float armor) {
         return (attackDamage * config.holyLightningAttackMultiplier)
                 + (elementalPower * config.holyLightningSpellMultiplier)
                 + (armor * config.holyLightningArmorMultiplier);
     }
 
-    private static void logDebugThrottled(ServerPlayer player, float ad, float hp, float arm,
-                                         boolean shield, float spellPwr, float physDmg, float tankDmg,
-                                         float spellDmg, String winner, float finalDmg) {
+    private static void logDebugThrottled(
+            ServerPlayer player, float ad, float hp, float arm,
+            boolean shield, float spellPwr, float physDmg, float tankDmg,
+            float spellDmg, String winner, float finalDmg
+    ) {
         long now = System.currentTimeMillis();
         Long lastLog = LAST_LOG_TIMES.get(player.getUUID());
 

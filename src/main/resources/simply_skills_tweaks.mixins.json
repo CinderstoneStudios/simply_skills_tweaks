@@ -1,14 +1,14 @@
 {
-	"required": true,
-	"package": "com.cinderstonestudios.simplyskillstweaks.mixin",
-	"compatibilityLevel": "JAVA_17",
-	"mixins": [
-		"RighteousHammersEffectMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+    "required": true,
+    "package": "com.cinderstonestudios.simplyskillstweaks.mixin",
+    "compatibilityLevel": "${mixin_compatibility}",
+    "minVersion": "0.8",
+    "mixins": [
+        "RighteousHammersEffectMixin"
+    ],
+    "client": [
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

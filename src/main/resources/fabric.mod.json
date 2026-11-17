@@ -1,37 +1,37 @@
 {
-	"schemaVersion": 1,
-	"id": "simply_skills_tweaks",
-	"version": "${version}",
-	"name": "Simply Skills Tweaks",
-	"description": "Tweaks abilities and skills for Simply Skills.",
-	"authors": [
-		"Stalemated",
-		"Cinderstone Studios"
-	],
-	"contact": {
-		"homepage": "",
-		"sources": "https://github.com/CinderstoneStudios/simply_skills_tweaks"
-	},
-	"license": "ARR",
-	"icon": "assets/simply_skills_tweaks/simply_skills_tweaks_icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.cinderstonestudios.simplyskillstweaks.SimplySkillsTweaks"
-		],
-		"modmenu": [
-			"com.cinderstonestudios.simplyskillstweaks.client.ModMenuCompat"
-		]
-	},
-	"mixins": [
-		"simply_skills_tweaks.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=0.15.7",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*",
-		"s_lib": ">=3.0.1+1.20.1",
-		"simplyskills": ">=1.7.2+1.20.1"
-	}
+    "schemaVersion": 1,
+    "id": "${id}",
+    "version": "${version}",
+    "name": "${name}",
+    "description": "${description}",
+    "authors": [
+        "${author}",
+        "Cinderstone Studios"
+    ],
+    "contact": {
+        "sources": "${sources}",
+        "issues": "${sources}/issues"
+    },
+    "license": "ARR",
+    "icon": "assets/${id}/icon.png",
+    "environment": "${environment}",
+    "entrypoints": {
+        "main": [
+            "com.cinderstonestudios.simplyskillstweaks.SimplySkillsTweaks"
+        ],
+        "client": [
+            "com.cinderstonestudios.simplyskillstweaks.SimplySkillsTweaksClient"
+        ]
+    },
+    "mixins": [
+        "${id}.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${fabric_loader}",
+        "minecraft": "${minecraft}",
+        "java": ">=${java_version}",
+        "fabric-api": "*",
+        "s_lib": ">=${slib}",
+        "simplyskills": ">=1.7.2+1.20.1"
+    }
 }

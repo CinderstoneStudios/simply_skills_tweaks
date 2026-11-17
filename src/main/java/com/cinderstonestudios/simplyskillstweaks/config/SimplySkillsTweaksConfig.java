@@ -39,7 +39,7 @@ public class SimplySkillsTweaksConfig {
     public boolean toggleNewHammerFormula = true;
 
     @Comment("Enables debug logging")
-    public boolean debugLogging = true;
+    public boolean debugLogging = false;
 
     @Title("physical")
     @Comment("Physical attack damage multiplier up to the soft-cap threshold (Default: 0.50, Vanilla was 0.80)")

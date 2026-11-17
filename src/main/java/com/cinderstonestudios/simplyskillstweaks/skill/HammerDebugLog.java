@@ -28,6 +28,10 @@ public final class HammerDebugLog {
         output.accept(describe(playerName, stats, damage));
     }
 
+    public void forget(UUID playerId) {
+        lastLogTimes.remove(playerId);
+    }
+
     private static String describe(String playerName, CombatStats stats, HammerBranchDamage damage) {
         return String.format(Locale.ROOT,
                 "Player: %s | AD: %.1f, HP: %.1f, Arm: %.1f, Shield: %s, SpellPwr: %.1f | Physical: %.2f, Tank: %.2f, Holy/Lightning: %.2f -> Winner: %s (Dealt: %.2f)",

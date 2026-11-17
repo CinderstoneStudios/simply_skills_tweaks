@@ -3,6 +3,7 @@ package com.cinderstonestudios.simplyskillstweaks.skill;
 import com.cinderstonestudios.simplyskillstweaks.SimplySkillsTweaks;
 import com.cinderstonestudios.simplyskillstweaks.config.SimplySkillsTweaksConfig;
 import com.cinderstonestudios.simplyskillstweaks.config.SimplySkillsTweaksConfigRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 
@@ -10,6 +11,10 @@ public final class RighteousHammersDamage {
     private static final HammerDebugLog DEBUG_LOG = new HammerDebugLog(SimplySkillsTweaks.LOGGER::info, System::currentTimeMillis);
 
     private RighteousHammersDamage() {
+    }
+
+    public static void register() {
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> DEBUG_LOG.forget(handler.player.getUUID()));
     }
 
     /**

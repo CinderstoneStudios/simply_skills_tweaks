@@ -34,4 +34,19 @@ class HammerDebugLogTest {
                 "Player: Steve | AD: 40.0, HP: 20.0, Arm: 0.0, Shield: false, SpellPwr: 0.0 | Physical: 20.00, Tank: 2.30, Holy/Lightning: 0.00 -> Winner: Physical (Dealt: 20.00)"
         ), lines);
     }
+
+    @Test
+    void aPlayerWhoLeftIsLoggedRightAwayWhenTheyHitAgain() {
+        List<String> lines = new ArrayList<>();
+        AtomicLong now = new AtomicLong(1_000);
+        HammerDebugLog log = new HammerDebugLog(lines::add, now::get);
+        UUID steve = UUID.randomUUID();
+
+        log.log(steve, "Steve", STATS, DAMAGE);
+        log.forget(steve);
+        now.set(1_001);
+        log.log(steve, "Steve", STATS, DAMAGE);
+
+        assertEquals(2, lines.size());
+    }
 }

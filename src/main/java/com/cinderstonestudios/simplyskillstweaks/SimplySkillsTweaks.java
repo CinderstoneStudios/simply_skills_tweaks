@@ -1,6 +1,7 @@
 package com.cinderstonestudios.simplyskillstweaks;
 
 import com.cinderstonestudios.simplyskillstweaks.config.SimplySkillsTweaksConfigRegistry;
+import com.cinderstonestudios.simplyskillstweaks.skill.RighteousHammersDamage;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,5 +13,6 @@ public final class SimplySkillsTweaks implements ModInitializer {
     @Override
     public void onInitialize() {
         SimplySkillsTweaksConfigRegistry.register();
+        RighteousHammersDamage.register();
     }
 }

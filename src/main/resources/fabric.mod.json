@@ -32,6 +32,10 @@
         "java": ">=${java_version}",
         "fabric-api": "*",
         "s_lib": ">=${slib}",
-        "simplyskills": ">=1.7.2+1.20.1"
+        "simplyskills": ">=1.7.2+1.20.1",
+        "spell_power": ">=0.11.0+1.20.1"
+    },
+    "suggests": {
+        "yet_another_config_lib_v3": ">=3.6.6+1.20.1"
     }
 }

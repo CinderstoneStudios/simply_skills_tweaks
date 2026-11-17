@@ -2,10 +2,10 @@ package com.cinderstonestudios.simplyskillstweaks.skill;
 
 import com.cinderstonestudios.simplyskillstweaks.config.ConfigManager;
 import com.cinderstonestudios.simplyskillstweaks.config.SSTConfig;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.server.network.ServerPlayerEntity;
 import com.cinderstonestudios.simplyskillstweaks.util.PlayerStatsUtils;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.spell_power.api.SpellSchools;
 
 import java.util.Locale;
@@ -41,13 +41,13 @@ public final class RighteousHammersDamageBalancer {
     public static float calculateDamage(DamageSource source, float originalAmount) {
         SSTConfig config = ConfigManager.getConfig();
         if (!config.toggleNewHammerFormula) return originalAmount;
-        if (!(source.getAttacker() instanceof ServerPlayerEntity player)) {
+        if (!(source.getEntity() instanceof ServerPlayer player)) {
             return originalAmount;
         }
 
-        float attackDamage = (float) player.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
-        float maxHealth = (float) player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
-        float armor = (float) player.getAttributeValue(EntityAttributes.GENERIC_ARMOR);
+        float attackDamage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+        float maxHealth = (float) player.getAttributeValue(Attributes.MAX_HEALTH);
+        float armor = (float) player.getAttributeValue(Attributes.ARMOR);
         boolean holdingShield = PlayerStatsUtils.isHoldingShield(player);
         float spellPower = PlayerStatsUtils.getHighestSpellPower(player, SpellSchools.HEALING, SpellSchools.LIGHTNING);
 
@@ -92,14 +92,14 @@ public final class RighteousHammersDamageBalancer {
                 + (armor * config.holyLightningArmorMultiplier);
     }
 
-    private static void logDebugThrottled(ServerPlayerEntity player, float ad, float hp, float arm,
+    private static void logDebugThrottled(ServerPlayer player, float ad, float hp, float arm,
                                          boolean shield, float spellPwr, float physDmg, float tankDmg,
                                          float spellDmg, String winner, float finalDmg) {
         long now = System.currentTimeMillis();
-        Long lastLog = LAST_LOG_TIMES.get(player.getUuid());
+        Long lastLog = LAST_LOG_TIMES.get(player.getUUID());
 
         if (lastLog == null || now - lastLog >= LOG_THROTTLE_MS) {
-            LAST_LOG_TIMES.put(player.getUuid(), now);
+            LAST_LOG_TIMES.put(player.getUUID(), now);
             LOGGER.info("Player: {} | AD: {}, HP: {}, Arm: {}, Shield: {}, SpellPwr: {} | Phys: {}, Tank: {}, Spell: {} -> Winner: {} (Dealt: {})",
                     player.getName().getString(),
                     String.format(Locale.ROOT, "%.1f", ad),

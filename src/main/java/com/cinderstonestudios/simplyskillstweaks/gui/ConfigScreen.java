@@ -8,8 +8,8 @@ import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.Text;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 
 import java.util.Locale;
 import java.util.function.BiConsumer;
@@ -23,7 +23,7 @@ public class ConfigScreen {
         boolean canEditSynced = ClientConfigPermissions.OP_OR_SP.get();
 
         return YetAnotherConfigLib.createBuilder()
-                .title(Text.translatable("simply_skills_tweaks.config_screen.title"))
+                .title(Component.translatable("simply_skills_tweaks.config_screen.title"))
                 .category(createRighteousHammersCategory(canEditSynced))
                 .build()
                 .generateScreen(parent);
@@ -34,8 +34,8 @@ public class ConfigScreen {
         BiConsumer<String, Object> updater = ConfigManager.MANAGER::updateOption;
 
         return ConfigCategory.createBuilder()
-                .name(Text.translatable("simply_skills_tweaks.category.righteous_hammers"))
-                .tooltip(Text.translatable("simply_skills_tweaks.category.righteous_hammers.desc"))
+                .name(Component.translatable("simply_skills_tweaks.category.righteous_hammers"))
+                .tooltip(Component.translatable("simply_skills_tweaks.category.righteous_hammers.desc"))
                 .group(createGeneralGroup(canEdit, configSupplier, updater))
                 .group(createPhysicalGroup(canEdit, configSupplier, updater))
                 .group(createTankGroup(canEdit, configSupplier, updater))
@@ -49,8 +49,8 @@ public class ConfigScreen {
             BiConsumer<String, Object> updater
     ) {
         return OptionGroup.createBuilder()
-                .name(Text.translatable("simply_skills_tweaks.group.general"))
-                .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.general.desc")))
+                .name(Component.translatable("simply_skills_tweaks.group.general"))
+                .description(OptionDescription.of(Component.translatable("simply_skills_tweaks.group.general.desc")))
                 .option(createBooleanOption("toggleNewHammerFormula", canEdit,
                         cfg, c -> c.toggleNewHammerFormula, true, updater))
                 .option(createBooleanOption("debugLogging", canEdit,
@@ -64,8 +64,8 @@ public class ConfigScreen {
             BiConsumer<String, Object> updater
     ) {
         return OptionGroup.createBuilder()
-                .name(Text.translatable("simply_skills_tweaks.group.physical"))
-                .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.physical.desc")))
+                .name(Component.translatable("simply_skills_tweaks.group.physical"))
+                .description(OptionDescription.of(Component.translatable("simply_skills_tweaks.group.physical.desc")))
                 .option(createFloatOption("physicalAttackMultiplier", canEdit, 0.0f, 2.0f, 0.05f,
                         cfg, c -> c.physicalAttackMultiplier, 0.50f, updater))
                 .option(createFloatOption("physicalSoftCapThreshold", canEdit, 20.0f, 500.0f, 5.0f, "%.1f",
@@ -81,8 +81,8 @@ public class ConfigScreen {
             BiConsumer<String, Object> updater
     ) {
         return OptionGroup.createBuilder()
-                .name(Text.translatable("simply_skills_tweaks.group.tank"))
-                .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.tank.desc")))
+                .name(Component.translatable("simply_skills_tweaks.group.tank"))
+                .description(OptionDescription.of(Component.translatable("simply_skills_tweaks.group.tank.desc")))
                 .option(createFloatOption("tankAttackMultiplier", canEdit, 0.0f, 1.0f, 0.01f,
                         cfg, c -> c.tankAttackMultiplier, 0.05f, updater))
                 .option(createFloatOption("tankHealthMultiplier", canEdit, 0.0f, 0.10f, 0.002f, "%.3f",
@@ -100,8 +100,8 @@ public class ConfigScreen {
             BiConsumer<String, Object> updater
     ) {
         return OptionGroup.createBuilder()
-                .name(Text.translatable("simply_skills_tweaks.group.holy_lightning"))
-                .description(OptionDescription.of(Text.translatable("simply_skills_tweaks.group.holy_lightning.desc")))
+                .name(Component.translatable("simply_skills_tweaks.group.holy_lightning"))
+                .description(OptionDescription.of(Component.translatable("simply_skills_tweaks.group.holy_lightning.desc")))
                 .option(createFloatOption("holyLightningAttackMultiplier", canEdit, 0.0f, 1.0f, 0.01f,
                         cfg, c -> c.holyLightningAttackMultiplier, 0.0f, updater))
                 .option(createFloatOption("holyLightningSpellMultiplier", canEdit, 0.0f, 3.0f, 0.05f,
@@ -121,10 +121,10 @@ public class ConfigScreen {
     ) {
         String langKey = getLangKey(configKey);
         return Option.<Boolean>createBuilder()
-                .name(Text.translatable(langKey))
+                .name(Component.translatable(langKey))
                 .description(OptionDescription.of(
-                        Text.translatable(langKey + ".desc"),
-                        canEdit ? Text.empty() : Text.translatable("simply_skills_tweaks.config_screen.op_required")
+                        Component.translatable(langKey + ".desc"),
+                        canEdit ? Component.empty() : Component.translatable("simply_skills_tweaks.config_screen.op_required")
                 ))
                 .binding(
                         defaultValue,
@@ -164,10 +164,10 @@ public class ConfigScreen {
     ) {
         String langKey = getLangKey(configKey);
         return Option.<Float>createBuilder()
-                .name(Text.translatable(langKey))
+                .name(Component.translatable(langKey))
                 .description(OptionDescription.of(
-                        Text.translatable(langKey + ".desc"),
-                        canEdit ? Text.empty() : Text.translatable("simply_skills_tweaks.config_screen.op_required")
+                        Component.translatable(langKey + ".desc"),
+                        canEdit ? Component.empty() : Component.translatable("simply_skills_tweaks.config_screen.op_required")
                 ))
                 .binding(
                         defaultValue,
@@ -177,7 +177,7 @@ public class ConfigScreen {
                 .controller(opt -> FloatSliderControllerBuilder.create(opt)
                         .range(min, max)
                         .step(step)
-                        .formatValue(val -> Text.literal(String.format(Locale.ROOT, formatPattern, val)))
+                        .formatValue(val -> Component.literal(String.format(Locale.ROOT, formatPattern, val)))
                 )
                 .available(canEdit)
                 .build();

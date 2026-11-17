@@ -1,8 +1,8 @@
 package com.cinderstonestudios.simplyskillstweaks.mixin;
 
 import com.cinderstonestudios.simplyskillstweaks.skill.RighteousHammersDamageBalancer;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.sweenus.simplyskills.effects.RighteousHammersEffect;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -15,11 +15,11 @@ public abstract class RighteousHammersEffectMixin {
         method = "lambda$applyUpdateEffect$2",
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"
+            target = "Lnet/minecraft/world/entity/LivingEntity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
         )
     )
     private static boolean redirectRighteousHammersDamage(LivingEntity target, DamageSource source, float amount) {
         float scaledDamage = RighteousHammersDamageBalancer.calculateDamage(source, amount);
-        return target.damage(source, scaledDamage);
+        return target.hurt(source, scaledDamage);
     }
 }
